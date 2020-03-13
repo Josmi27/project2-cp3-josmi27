@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: python:3.6.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: run unit tests
+          command: |
+            python -m tests.unit_tests
+    
+      - run:
+          name: run socketio tests
+          command: |
+            python -m tests.socketio_tests
+            
+      - run:
+          name: run integration tests
+          command: |
+            python -m tests.integration_tests
+            
+        #- run:
+          #name: deploy to heroku
+          #command: |
+          #  git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
