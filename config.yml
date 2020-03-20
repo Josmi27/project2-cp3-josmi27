@@ -24,7 +24,7 @@ jobs:
           command: |
             python -m tests.integration_tests
             
-        #- run:
-          #name: deploy to heroku
-          #command: |
-          #  git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+      - run:
+          name: deploy to heroku
+          command: |
+            git push https://heroku:6e431af5-f377-43e8-8b01-5f7655367c2b@git.heroku.com/gentle-castle-06902.git master
