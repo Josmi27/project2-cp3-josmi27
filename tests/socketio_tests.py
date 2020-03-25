@@ -57,34 +57,6 @@ class socketio_test(unittest.TestCase):
         self.assertEqual(received[0]['args'][0]['post'], 'My message')
         
 
-    
-    #CHATCHAT TESTS
-    
-    def test_socketio_case_chatbot_aboutMessage(self, usern="Joshua", message="!! about"): 
-        self.usern = usern
-        self.message = message
-        result = chatchat.ChatBot(usern, message)[1]
-        self.assertEqual(result, "Welcome to the chatroom of brotherhood. I was created to uphold the unification of Iotas nationally. And always remember our 5 principles: Scholarship, Leadership, Citizenship, Fidelity, and Brotherhood!")
-        
-
-    def test_socketio_case_chatbot_helpMessage(self, usern="Joshua", message="!! help"): 
-        self.usern = usern
-        self.message = message
-        result = chatchat.ChatBot(usern, message)[1]
-        self.assertEqual(result, "The following commands are available to you: '!! about' | '!! help' | '!! say <something>' | '!! service date' | '!! party date' | '!! brotherhood quote'")
-
-
-    def test_socketio_case_chatbot_serviceMessage(self, usern="Joshua", message="!! service date"): 
-        self.usern = usern
-        self.message = message
-        result = chatchat.ChatBot(usern, message)[1]
-        self.assertEqual(result,  "At this current time, the next community service date will be held on April 23, following the regional convention.")
-    
-    def test_socketio_case_chatbot_partyMessage(self, usern="Joshua", message="!! party date"): 
-        self.usern = usern
-        self.message = message
-        result = chatchat.ChatBot(usern, message)[1]
-        self.assertEqual(result,  "You already know when the party is {}, stop playing with me brother!".format(usern)) 
 
 
 
