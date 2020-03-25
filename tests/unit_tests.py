@@ -3,33 +3,20 @@ import unittest
 
    
 class unit_test(unittest.TestCase):
-    
-    # These should not start up a local Flask server nor test Socket.io functionality
-    # These should test code paths in your app and be unique to each other
-    
-    # Tests are meant to verify that things do work, actually work, and things that don’t work, actually don’t. 
-    # Use them as a way of communicating your expectations for what the code should (or should not!) do.
-    
-    # Rewrite your code in a way so that it’s easier to write tests on it,
-    
-    
-    
-    ####  Confirm the colors of every little thing. The reason why is to stress the importance
-    # of matching the Iota theme
-    
-    
-    def test_chatbot_aboutMessage(self, usern="Joshua", message="!! about"): 
+
+    def test_chatbot_greetingMessage(self, usern="Joshua", message="!! greeting"): 
         self.usern = usern
         self.message = message
         result = chatchat.ChatBot(usern, message)[1]
-        self.assertEqual(result, "Welcome to the chatroom of brotherhood. I was created to uphold the unification of Iotas nationally. And always remember our 5 principles: Scholarship, Leadership, Citizenship, Fidelity, and Brotherhood!")
+        self.assertEqual(result, "Welcome to the chatroom of brotherhood.")
         
 
     def test_chatbot_helpMessage(self, usern="Joshua", message="!! help"): 
         self.usern = usern
         self.message = message
         result = chatchat.ChatBot(usern, message)[1]
-        self.assertEqual(result, "The following commands are available to you: '!! about' | '!! help' | '!! say <something>' | '!! service date' | '!! party date' | '!! brotherhood quote'")
+        self.assertEqual(result, "The following commands are available to you: '!! greeting' | '!! help' | '!! say <something>' | '!! service date' | '!! party date' | '!! brotherhood quote'\
+         | '!! who' | '!! why' | '!! what' | '!! when'")
 
 
     def test_chatbot_serviceMessage(self, usern="Joshua", message="!! service date"): 
@@ -50,9 +37,38 @@ class unit_test(unittest.TestCase):
         result = chatchat.ChatBot(usern, message)[1]
         self.assertEqual(result, "happiness") 
 
+    def test_chatbot_whoMessage(self, usern="Joshua", message="!! who"): 
+        self.usern = usern
+        self.message = message
+        result = chatchat.ChatBot(usern, message)[1]
+        self.assertEqual(result, "My name is... I-Phi Bot!") 
+    
+    def test_chatbot_whatMessage(self, usern="Joshua", message="!! what"): 
+        self.usern = usern
+        self.message = "I am a chatbot. But not just any chatbot. I am the I-Phi Bot, created by Joshua Smith."
+        result = chatchat.ChatBot(usern, message)[1]
+        self.assertEqual(result, "I am a chatbot. But not just any chatbot. I am the I-Phi Bot, created by Joshua Smith.") 
+    
+    def test_chatbot_whyMessage(self, usern="Joshua", message="!! say happiness"): 
+        self.usern = usern
+        self.message = "{}".format(message[7:])
+        result = chatchat.ChatBot(usern, message)[1]
+        self.assertEqual(result, "happiness") 
+        
+    def test_chatbot_whenMessage(self, usern="Joshua", message="!! when"): 
+        self.usern = usern
+        self.message = message
+        result = chatchat.ChatBot(usern, message)[1]
+        self.assertEqual(result, "I was originally created on March 7, 2020. Fun fact: That's my birthday!") 
+    
+    def test_chatbot_noMessage(self, usern="Joshua", message="!! "): 
+        self.usern = usern
+        self.message = message
+        result = chatchat.ChatBot(usern, message)[1]
+        self.assertEqual(result, "That is not a correct command. Please try again!") 
+    
     
     
 if __name__ == '__main__':
     unittest.main()
-    # To run unit tests: cd current directory -> python unit_tests.py 
-    
+    # To run unit tests: cd current directory -> python -m tests.unit_tests 
